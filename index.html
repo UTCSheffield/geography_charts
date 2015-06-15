@@ -20,107 +20,76 @@ section {
 }
 
 </style>
+</head>
+<body>
+<h1>Population Histograms</h1>
+<div>
+    <label for="year1">Year 1</label> <input type="number" id="year1" value="1960" /> 
+    <label for="year2">Year 2</label> <input type="number" id="year2" value="2010" /> 
+    <label for="country1">Country</label> <input type="text" id="country1" value="Brazil" />
+    <label for="country2">Country</label> <input type="text" id="country2" value="China" /><br>
+    <label for="groupLen">Group into</label> <input type="number" id="groupLen" value="10" />
+    <button onClick="draw()">Draw</button>
+</div>
+
+<section>
+    <h2 id="label-0-0">Brazil 1980 - Millions</h2>
+    <svg class="chart" id="chart-0-0"></svg>
+</section>
+
+<section>
+    <h2 id="label-0-1" >Brazil 2000 - Millions</h2>
+    <svg class="chart" id="chart-0-1"></svg>
+</section>
+
+<section>
+    <h2 id="label-1-0">China 1980 - Millions</h2>
+    <svg class="chart" id="chart-1-0"></svg>
+</section>
+
+<section>
+    <h2 id="label-1-1">China 2000 - Millions</h2>
+    <svg class="chart" id="chart-1-1"></svg>
+</section>
+
+
+<section>
+<p>
+This took me about an hour but I'd not touched the chart library or data before</p>
+<p> The chart is made in the page by using <a href="http://d3js.org" target="_blank" >D3.js</a> (<a href="http://bost.ocks.org/mike/bar/3/">example</a>) </p>
+<p> The data is from <a href="http://population.io/"  target="_blank" >http://population.io/</a>. 
+The data is availble for all countries and many years (and does have a male /
+female split for a proper population pyramid but i couldn't make that work on my first go). <a href="http://api.population.io/#!/population/retrievePopulationTableAllAges" target="_blank">API docs for the call i used</a></p>
+</section>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
 
 <script>
 
-//var proccessYear = ;
-
-var sURL = "http://api.population.io:80/1.0/population/1980/Brazil/";
-
-d3.json(sURL, function(error, json) {
-  if (error) return console.warn(error);
-  
+var proccessYear = function(json) {
   var data = [];
-  var groupLength = 5;
   json.forEach(function(year){
-  var group = Math.floor(year.age /groupLength);
-  if(!data[group]) {
-    data[group] = year;
-    data[group].label = ""+(group *groupLength)+"-"+(((group+1) *groupLength)-1);  
-  } else {
-    data[group].total += year.total;
-    data[group].total += year.total;
-    data[group].females += year.females;
-  }
+      var group = Math.floor(year.age /groupLength);
+      if(!data[group]) {
+        data[group] = year;
+        data[group].label = ""+(group *groupLength)+"-"+(((group+1) *groupLength)-1);  
+      } else {
+        data[group].total += year.total;
+        data[group].total += year.total;
+        data[group].females += year.females;
+      }
+    
+    });
+  return data;
+};
 
-});
-  //console.log("data =", data);
-  visualizeit("#chart1", data);
-});
+var groupLength = 10;
 
-var sURL2 = "http://api.population.io:80/1.0/population/2000/Brazil/";
-
-d3.json(sURL2, function(error, json) {
-  if (error) return console.warn(error);
-  
-  var data = [];
-  var groupLength = 5;
-  json.forEach(function(year){
-  var group = Math.floor(year.age /groupLength);
-  if(!data[group]) {
-    data[group] = year;
-    data[group].label = ""+(group *groupLength)+"-"+(((group+1) *groupLength)-1);  
-  } else {
-    data[group].total += year.total;
-    data[group].total += year.total;
-    data[group].females += year.females;
-  }
-
-});
-  //console.log("data =", data);
-  visualizeit("#chart2", data);
-});
-
-
-var sURL3 = "http://api.population.io:80/1.0/population/1980/China/";
-
-d3.json(sURL3, function(error, json) {
-  if (error) return console.warn(error);
-  
-  var data = [];
-  var groupLength = 5;
-  json.forEach(function(year){
-  var group = Math.floor(year.age /groupLength);
-  if(!data[group]) {
-    data[group] = year;
-    data[group].label = ""+(group *groupLength)+"-"+(((group+1) *groupLength)-1);  
-  } else {
-    data[group].total += year.total;
-    data[group].total += year.total;
-    data[group].females += year.females;
-  }
-
-});
-  //console.log("data =", data);
-  visualizeit("#chart3", data);
-});
-
-var sURL4 = "http://api.population.io:80/1.0/population/2000/China/";
-
-d3.json(sURL4, function(error, json) {
-  if (error) return console.warn(error);
-  
-  var data = [];
-  var groupLength = 5;
-  json.forEach(function(year){
-  var group = Math.floor(year.age /groupLength);
-  if(!data[group]) {
-    data[group] = year;
-    data[group].label = ""+(group *groupLength)+"-"+(((group+1) *groupLength)-1);  
-  } else {
-    data[group].total += year.total;
-    data[group].total += year.total;
-    data[group].females += year.females;
-  }
-
-});
-  //console.log("data =", data);
-  visualizeit("#chart4", data);
-});
-
-
+var aYears = [1980, 2010];
+var aCountries = ["Brazil", "China"];
 
 
 function visualizeit(sSelector, data) {
@@ -157,47 +126,49 @@ function visualizeit(sSelector, data) {
           
 }
 
+function draw() {
+    groupLength = document.getElementById("groupLen").value;
+    console.log("groupLength =", groupLength);
+    
+    var aYears = [document.getElementById("year1").value, document.getElementById("year2").value];
+    console.log("aYears =", aYears);
+    var aCountries = [document.getElementById("country1").value, document.getElementById("country2").value];
+    console.log("aCountries =", aCountries);
+    
+
+    for(var i = 0; i < aCountries.length; i++) {
+        for(var j = 0; j < aYears.length; j++) {
+    
+            var sURL = "http://api.population.io:80/1.0/population/"+aYears[j]+"/"+aCountries[i]+"/";
+            var sLabel = aCountries[i]+" "+ aYears[j];
+            var sLabelID = "label-"+i+"-"+j;
+            var ele = document.getElementById(sLabelID);
+            ele.innerHTML = sLabel;
+            
+            d3.json(sURL, function(iY, iC, error, json) {
+                if (error) {
+                    return console.warn(error);
+                }
+                
+                var data = proccessYear(json);
+                var sChartID = "chart-"+iC+"-"+iY;
+                document.getElementById(sChartID).innerHTML = "";
+                visualizeit("#"+sChartID, data);
+            }.bind(this, j, i));
+        }
+    }
+}
+
+draw();
+
 function type(d) {
   d.total = +d.total; // coerce to number
   return d;
 }
 
 </script>
-</head>
-<body>
-<h1>Proof of Concept Population Histogram</h1>
-
-<section>
-<h2>Brazil 1980 - Millions</h2>
-<svg class="chart" id="chart1"></svg>
-
-</section>
-
-<section>
-<h2>Brazil 2000 - Millions</h2>
-<svg class="chart" id="chart2"></svg>
-</section>
-
-<section>
-<h2>China 1980 - Millions</h2>
-<svg class="chart" id="chart3"></svg>
-
-</section>
-
-<section>
-<h2>China 2000 - Millions</h2>
-<svg class="chart" id="chart4"></svg>
-</section>
 
 
-<section>
-<p>
-This took me about an hour but I'd not touched the chart library or data before</p>
-<p> The chart is made in the page by using <a href="http://d3js.org" target="_blank" >D3.js</a> (<a href="http://bost.ocks.org/mike/bar/3/">example</a>) </p>
-<p> The data is from <a href="http://population.io/"  target="_blank" >http://population.io/</a>. 
-The data is availble for all countries and many years (and does have a male /
-female split for a proper population pyramid but i couldn't make that work on my first go). <a href="http://api.population.io/#!/population/retrievePopulationTableAllAges" target="_blank">API docs for the call i used</a></p>
-</section>
 </body>
 </html>
 
