@@ -26,9 +26,9 @@ section {
 <div>
     <label for="year1">Year 1</label> <input type="number" id="year1" value="1960" min="1950" max="2015"/> 
     <label for="year2">Year 2</label> <input type="number" id="year2" value="2010" min="1950" max="2015" /> 
-    <label for="country1">Country</label> <input type="text" id="country1" value="Brazil" list="countries" />
-    <label for="country2">Country</label> <input type="text" id="country2" value="China" list="countries" /><br>
-    <label for="groupLen">Group into</label> <input type="number" id="groupLen" value="10"  min="1" max="10" />
+    <label for="country1">Country 1</label> <input type="text" id="country1" value="Brazil" list="countries" />
+    <label for="country2">Country 2</label> <input type="text" id="country2" value="China" list="countries" /><br>
+    <label for="groupLen">Group into</label> <input type="number" id="groupLen" value="10"  min="1" max="10" length="3"/> year bands
     <button onClick="draw()">Draw</button>
 </div>
 
@@ -258,12 +258,9 @@ section {
 
 
 <section>
-<p>
-This took me about an hour but I'd not touched the chart library or data before</p>
-<p> The chart is made in the page by using <a href="http://d3js.org" target="_blank" >D3.js</a> (<a href="http://bost.ocks.org/mike/bar/3/">example</a>) </p>
+<p> The charts are made in the page by using <a href="http://d3js.org" target="_blank" >D3.js</a> (<a href="http://bost.ocks.org/mike/bar/3/">example</a>) </p>
 <p> The data is from <a href="http://population.io/"  target="_blank" >http://population.io/</a>. 
-The data is availble for all countries and many years (and does have a male /
-female split for a proper population pyramid but i couldn't make that work on my first go). <a href="http://api.population.io/#!/population/retrievePopulationTableAllAges" target="_blank">API docs for the call i used</a></p>
+The data is availble for all countries. <a href="http://api.population.io/#!/population/retrievePopulationTableAllAges" target="_blank">API docs for the calls used</a></p>
 </section>
 
 
