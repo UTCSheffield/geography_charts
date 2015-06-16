@@ -5,7 +5,7 @@
 <style>
 
 .chart rect {
-  fill: steelblue;
+  fill: gray;
 }
 
 .chart rect.males{
@@ -14,13 +14,17 @@
 
 
 .chart rect.females{
-  fill: white;
+  fill: steelblue;/*white;*/
 }
 
 .chart text {
   fill: black;
   font: 10px sans-serif;
   text-anchor: end;
+}
+
+.chart text.females {
+  text-anchor: start;
 }
 
 section {
@@ -42,7 +46,7 @@ section {
 </div>
 
 <datalist id="countries">
-		<option value="Afghanistan" />
+	<option value="Afghanistan" />
    	<option value="Albania" />
    	<option value="Algeria" />
    	<option value="Angola" />
@@ -285,7 +289,7 @@ var proccessYear = function(json) {
       var group = Math.floor(year.age /groupLength);
       if(!data[group]) {
         data[group] = year;
-        data[group].label = ""+(group *groupLength)+"-"+(((group+1) *groupLength)-1);  
+        data[group].label = ""+(group * groupLength)+"-"+(((group+1) * groupLength)-1);  
       } else {
         data[group].total += year.total;
         data[group].males += year.males;
@@ -304,15 +308,18 @@ var aCountries = ["Brazil", "China"];
 
 function visualizeit(sSelector, data) {
     
-    var width = 420,
-        barHeight = 20;
-    
+    var width = 450,
+        barHeight = 20,
+        leftMargin = 50;
     
     var male_x = d3.scale.linear()
-        .range([width / 2 , width]);
+        .range([leftMargin + ((width-leftMargin) / 2) , width]);
         
     var female_x = d3.scale.linear()
-        .range([width / 2 , 0]);
+        .range([leftMargin + ((width-leftMargin) / 2) , leftMargin]);
+    
+    var width_x = d3.scale.linear()
+        .range([0, ((width-leftMargin) / 2)]);
     
         
     var chart = d3.select(sSelector)
@@ -320,6 +327,7 @@ function visualizeit(sSelector, data) {
         
       male_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
       female_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
+      width_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
     
       
       chart.attr("height", barHeight * data.length);
@@ -330,38 +338,54 @@ function visualizeit(sSelector, data) {
           .attr("transform", function(d, i) { return "translate(0," + (data.length - 1 - i ) * barHeight + ")"; });
   
       bar.append("rect")
-          //.attr("x",  width/2)
-          .attr("width", function(d) { return male_x(d.males); })
+          .attr("x",  male_x(0))
+          .attr("width", function(d) { return width_x(d.males); })
+          .attr("title", function(d) { return "Males aged "+d.label+" = "+ d.males; })
           .attr("height", barHeight - 1)
           .attr("class", "males");
     
 
       bar.append("rect")
-          //.attr("x", function(d) { return x( -1 * d.females); })
-          .attr("width", function(d) { return female_x( d.females); })
-          .attr("height", barHeight)
+          .attr("x", function(d) { return female_x( d.females); })
+          .attr("width", function(d) { return width_x( d.females); })
+          .attr("title", function(d) { return "Females aged "+d.label+" = "+ d.females; })
+          .attr("height", barHeight - 1 )
           .attr("class", "females");
-      
-          
           
       
       bar.append("text")
-          .attr("x", function(d) { return male_x(d.males) - 3; })
+          .attr("x", function(d) { 
+                if (width_x(d.males) > 30 ) {
+                    return male_x(d.males) - 3 ;
+                } else {
+                    return male_x(0) + 50;
+                }
+          })
           .attr("y", barHeight / 2)
           .attr("dy", ".35em")
+          .attr("class", "males")
           .text(function(d) { return Math.round(d.males/100000)/10; });
           
       bar.append("text")
-          .attr("x", function(d) { return female_x(d.females) + 20; })
+          .attr("x", function(d) { 
+                if (width_x(d.females) > 30 ) {
+                    return female_x(d.females) + 3 ;
+                } else {
+                    return female_x(0) - 50;
+                }
+            })
           .attr("y", barHeight / 2)
           .attr("dy", ".35em")
-          .text(function(d) { return Math.round(d.females/100000)/10; });
-
+          .attr("class", "females")
+          
+          .text(function(d) { return Math.round(d.females/100000)/10; })
+          
       
       bar.append("text")
-          .attr("x", width/2)
+          .attr("x", leftMargin)
           .attr("y", barHeight / 2)
           .attr("dy", ".35em")
+          .attr("class", "labels")
           .text(function(d) { return d.label  });
 
   
@@ -385,7 +409,8 @@ function draw() {
             var sLabelID = "label-"+i+"-"+j;
             var ele = document.getElementById(sLabelID);
             ele.innerHTML = sLabel;
-            
+            document.getElementById("chart-"+i+"-"+j).innerHTML = "";
+                
             d3.json(sURL, function(iY, iC, error, json) {
                 if (error) {
                     return //console.warn(error);
@@ -393,7 +418,6 @@ function draw() {
                 
                 var data = proccessYear(json);
                 var sChartID = "chart-"+iC+"-"+iY;
-                document.getElementById(sChartID).innerHTML = "";
                 visualizeit("#"+sChartID, data);
             }.bind(this, j, i));
         }
