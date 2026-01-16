@@ -37,8 +37,8 @@ section {
 <body>
 <h1>Population Histograms</h1>
 <div>
-    <label for="year1">Year 1</label> <input type="number" id="year1" value="1960" min="1950" max="2015"/> 
-    <label for="year2">Year 2</label> <input type="number" id="year2" value="2010" min="1950" max="2015" /> 
+    <label for="year1">Year 1</label> <input type="number" id="year1" value="1960" min="1950" max="2023"/> 
+    <label for="year2">Year 2</label> <input type="number" id="year2" value="2010" min="1950" max="2023" /> 
 	<br>
 	<label for="country1">Country 1</label> <select id="country1"></select><br
 	<label for="country2">Country 2</label> <select id="country2"></select><br>
@@ -104,6 +104,7 @@ var groupLength = 10;
 var countryCodeCache = {};
 var countryListPromise = null;
 var countryOptions = [];
+var latestYear = 2023;
 
 var proccessYear = function(json) {
 	var data = [];
@@ -221,6 +222,22 @@ function populateCountrySelects() {
 	// Set default values
 	select1.value = "BR";
 	select2.value = "CN";
+}
+
+function fetchLatestYear() {
+	return fetch("https://api.worldbank.org/v2/country/US/indicator/SP.POP.TOTL?format=json&per_page=1")
+		.then(function(resp) { return resp.json(); })
+		.then(function(json) {
+			if (Array.isArray(json) && Array.isArray(json[1]) && json[1][0] && json[1][0].date) {
+				latestYear = parseInt(json[1][0].date, 10);
+				document.getElementById("year1").setAttribute("max", latestYear);
+				document.getElementById("year2").setAttribute("max", latestYear);
+			}
+			return latestYear;
+		})
+		.catch(function() {
+			return latestYear; // fallback to default
+		});
 }
 
 function loadCountryCodes() {
@@ -356,7 +373,9 @@ function draw() {
 		});
 }
 
-loadCountryCodes().then(draw);
+fetchLatestYear().then(function() {
+	return loadCountryCodes();
+}).then(draw);
 
 </script>
 
