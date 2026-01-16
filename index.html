@@ -39,215 +39,13 @@ section {
 <div>
     <label for="year1">Year 1</label> <input type="number" id="year1" value="1960" min="1950" max="2015"/> 
     <label for="year2">Year 2</label> <input type="number" id="year2" value="2010" min="1950" max="2015" /> 
-    <label for="country1">Country 1</label> <input type="text" id="country1" value="Brazil" list="countries" />
-    <label for="country2">Country 2</label> <input type="text" id="country2" value="China" list="countries" /><br>
-    <label for="groupLen">Group into</label> <input type="number" id="groupLen" value="10"  min="1" max="10" length="3"/> year bands
+	<br>
+	<label for="country1">Country 1</label> <select id="country1"></select><br
+	<label for="country2">Country 2</label> <select id="country2"></select><br>
+	<br
+	<label for="groupLen">Group into</label> <input type="number" id="groupLen" value="10"  min="5" max="10" step="5" length="3"/> year bands
     <button onClick="draw()">Draw</button>
 </div>
-
-<datalist id="countries">
-	<option value="Afghanistan" />
-   	<option value="Albania" />
-   	<option value="Algeria" />
-   	<option value="Angola" />
-   	<option value="Antigua and Barbuda" />
-   	<option value="Azerbaijan" />
-   	<option value="Argentina" />
-   	<option value="Australia" />
-   	<option value="Austria" />
-   	<option value="The Bahamas" />
-   	<option value="Bahrain" />
-   	<option value="Bangladesh" />
-   	<option value="Armenia" />
-   	<option value="Barbados" />
-   	<option value="Belgium" />
-   	<option value="Bhutan" />
-   	<option value="Bolivia" />
-   	<option value="Bosnia and Herzegovina" />
-   	<option value="Botswana" />
-   	<option value="Brazil" />
-   	<option value="Belize" />
-   	<option value="Solomon Islands" />
-   	<option value="Brunei Darussalam" />
-   	<option value="Bulgaria" />
-   	<option value="Myanmar" />
-   	<option value="Burundi" />
-   	<option value="Belarus" />
-   	<option value="Cambodia" />
-   	<option value="Cameroon" />
-   	<option value="Canada" />
-   	<option value="Cabo Verde" />
-   	<option value="Central African Republic" />
-   	<option value="Sri Lanka" />
-   	<option value="Chad" />
-   	<option value="Chile" />
-   	<option value="China" />
-   	<option value="Colombia" />
-   	<option value="Comoros" />
-   	<option value="Mayotte" />
-   	<option value="Congo" />
-   	<option value="Dem Rep of Congo" />
-   	<option value="Costa Rica" />
-   	<option value="Croatia" />
-   	<option value="Cuba" />
-   	<option value="Cyprus" />
-   	<option value="Czech Republic" />
-   	<option value="Benin" />
-   	<option value="Denmark" />
-   	<option value="Dominican Republic" />
-   	<option value="Ecuador" />
-   	<option value="El Salvador" />
-   	<option value="Equatorial Guinea" />
-   	<option value="Ethiopia" />
-   	<option value="Eritrea" />
-   	<option value="Estonia" />
-   	<option value="Fiji" />
-   	<option value="Finland" />
-   	<option value="France" />
-   	<option value="French Guiana" />
-   	<option value="French Polynesia" />
-   	<option value="Djibouti" />
-   	<option value="Gabon" />
-   	<option value="Georgia" />
-   	<option value="The Gambia" />
-   	<option value="West Bank and Gaza" />
-   	<option value="Germany" />
-   	<option value="Ghana" />
-   	<option value="Kiribati" />
-   	<option value="Greece" />
-   	<option value="Grenada" />
-   	<option value="Guadeloupe" />
-   	<option value="Guam" />
-   	<option value="Guatemala" />
-   	<option value="Guinea" />
-   	<option value="Guyana" />
-   	<option value="Haiti" />
-   	<option value="Honduras" />
-   	<option value="Hong Kong SAR-China" />
-   	<option value="Hungary" />
-   	<option value="Iceland" />
-   	<option value="India" />
-   	<option value="Indonesia" />
-   	<option value="Islamic Republic of Iran" />
-   	<option value="Iraq" />
-   	<option value="Ireland" />
-   	<option value="Israel" />
-   	<option value="Italy" />
-   	<option value="Cote-d-Ivoire" />
-   	<option value="Jamaica" />
-   	<option value="Japan" />
-   	<option value="Kazakhstan" />
-   	<option value="Jordan" />
-   	<option value="Kenya" />
-   	<option value="Dem Peoples Rep of Korea" />
-   	<option value="Rep of Korea" />
-   	<option value="Kuwait" />
-   	<option value="Kyrgyz Republic" />
-   	<option value="Lao PDR" />
-   	<option value="Lebanon" />
-   	<option value="Lesotho" />
-   	<option value="Latvia" />
-   	<option value="Liberia" />
-   	<option value="Libya" />
-   	<option value="Lithuania" />
-   	<option value="Luxembourg" />
-   	<option value="Macao SAR China" />
-   	<option value="Madagascar" />
-   	<option value="Malawi" />
-   	<option value="Malaysia" />
-   	<option value="Maldives" />
-   	<option value="Mali" />
-   	<option value="Malta" />
-   	<option value="Martinique" />
-   	<option value="Mauritania" />
-   	<option value="Mauritius" />
-   	<option value="Mexico" />
-   	<option value="Mongolia" />
-   	<option value="Moldova" />
-   	<option value="Montenegro" />
-   	<option value="Morocco" />
-   	<option value="Mozambique" />
-   	<option value="Oman" />
-   	<option value="Namibia" />
-   	<option value="Nepal" />
-   	<option value="The Netherlands" />
-   	<option value="Curacao" />
-   	<option value="Aruba" />
-   	<option value="New Caledonia" />
-   	<option value="Vanuatu" />
-   	<option value="New Zealand" />
-   	<option value="Nicaragua" />
-   	<option value="Niger" />
-   	<option value="Nigeria" />
-   	<option value="Norway" />
-   	<option value="Federated States of Micronesia" />
-   	<option value="Pakistan" />
-   	<option value="Panama" />
-   	<option value="Papua New Guinea" />
-   	<option value="Paraguay" />
-   	<option value="Peru" />
-   	<option value="Philippines" />
-   	<option value="Poland" />
-   	<option value="Portugal" />
-   	<option value="Guinea-Bissau" />
-   	<option value="Timor-Leste" />
-   	<option value="Puerto Rico" />
-   	<option value="Qatar" />
-   	<option value="Reunion" />
-   	<option value="Romania" />
-   	<option value="Russian Federation" />
-   	<option value="Rwanda" />
-   	<option value="St-Lucia" />
-   	<option value="St-Vincent and the Grenadines" />
-   	<option value="Sao Tome and Principe" />
-   	<option value="Saudi Arabia" />
-   	<option value="Senegal" />
-   	<option value="Serbia" />
-   	<option value="Seychelles" />
-   	<option value="Sierra Leone" />
-   	<option value="Singapore" />
-   	<option value="Slovak Republic" />
-   	<option value="Vietnam" />
-   	<option value="Slovenia" />
-   	<option value="Somalia" />
-   	<option value="South Africa" />
-   	<option value="Zimbabwe" />
-   	<option value="Spain" />
-   	<option value="South Sudan" />
-   	<option value="Sudan" />
-   	<option value="Western Sahara" />
-   	<option value="Suriname" />
-   	<option value="Swaziland" />
-   	<option value="Sweden" />
-   	<option value="Switzerland" />
-   	<option value="Syrian Arab Rep" />
-   	<option value="Tajikistan" />
-   	<option value="Thailand" />
-   	<option value="Togo" />
-   	<option value="Tonga" />
-   	<option value="Trinidad and Tobago" />
-   	<option value="United Arab Emirates" />
-   	<option value="Tunisia" />
-   	<option value="Turkey" />
-   	<option value="Turkmenistan" />
-   	<option value="Uganda" />
-   	<option value="Ukraine" />
-   	<option value="FYR Macedonia" />
-   	<option value="Arab Rep of Egypt" />
-   	<option value="United Kingdom" />
-   	<option value="Channel Islands" />
-   	<option value="Tanzania" />
-   	<option value="United States" />
-   	<option value="US Virgin Islands" />
-   	<option value="Burkina Faso" />
-   	<option value="Uruguay" />
-   	<option value="Uzbekistan" />
-   	<option value="RB-de-Venezuela" />
-   	<option value="Samoa" />
-   	<option value="Rep of Yemen" />
-   	<option value="Zambia" />
-   	<option value="World" />
-</datalist>
 
 <section>
     <h2 id="label-0-0">Brazil 1980 - Millions</h2>
@@ -272,8 +70,7 @@ section {
 
 <section>
 <p> The charts are made in the page by using <a href="http://d3js.org" target="_blank" >D3.js</a> (<a href="http://bost.ocks.org/mike/bar/3/">example</a>) </p>
-<p> The data is from <a href="http://population.io/"  target="_blank" >http://population.io/</a>. 
-The data is availble for all countries. <a href="http://api.population.io/#!/population/retrievePopulationTableAllAges" target="_blank">API docs for the calls used</a></p>
+<p> The data now comes from the <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation"  target="_blank" >World Bank Indicators API</a> (population by age and sex, 5-year bands).</p>
 </section>
 
 
@@ -282,154 +79,284 @@ The data is availble for all countries. <a href="http://api.population.io/#!/pop
 
 
 <script>
-
-var proccessYear = function(json) {
-  var data = [];
-  json.forEach(function(year){
-      var group = Math.floor(year.age /groupLength);
-      if(!data[group]) {
-        data[group] = year;
-        data[group].label = ""+(group * groupLength)+"-"+(((group+1) * groupLength)-1);  
-      } else {
-        data[group].total += year.total;
-        data[group].males += year.males;
-        data[group].females += year.females;
-      }
-    
-    });
-  return data;
-};
+// Age-band indicators for World Bank population by age and sex (5-year buckets, 80+ open-ended)
+var indicatorBands = [
+	{ start: 0, label: "0-4", male: "SP.POP.0004.MA", female: "SP.POP.0004.FE" },
+	{ start: 5, label: "5-9", male: "SP.POP.0509.MA", female: "SP.POP.0509.FE" },
+	{ start: 10, label: "10-14", male: "SP.POP.1014.MA", female: "SP.POP.1014.FE" },
+	{ start: 15, label: "15-19", male: "SP.POP.1519.MA", female: "SP.POP.1519.FE" },
+	{ start: 20, label: "20-24", male: "SP.POP.2024.MA", female: "SP.POP.2024.FE" },
+	{ start: 25, label: "25-29", male: "SP.POP.2529.MA", female: "SP.POP.2529.FE" },
+	{ start: 30, label: "30-34", male: "SP.POP.3034.MA", female: "SP.POP.3034.FE" },
+	{ start: 35, label: "35-39", male: "SP.POP.3539.MA", female: "SP.POP.3539.FE" },
+	{ start: 40, label: "40-44", male: "SP.POP.4044.MA", female: "SP.POP.4044.FE" },
+	{ start: 45, label: "45-49", male: "SP.POP.4549.MA", female: "SP.POP.4549.FE" },
+	{ start: 50, label: "50-54", male: "SP.POP.5054.MA", female: "SP.POP.5054.FE" },
+	{ start: 55, label: "55-59", male: "SP.POP.5559.MA", female: "SP.POP.5559.FE" },
+	{ start: 60, label: "60-64", male: "SP.POP.6064.MA", female: "SP.POP.6064.FE" },
+	{ start: 65, label: "65-69", male: "SP.POP.6569.MA", female: "SP.POP.6569.FE" },
+	{ start: 70, label: "70-74", male: "SP.POP.7074.MA", female: "SP.POP.7074.FE" },
+	{ start: 75, label: "75-79", male: "SP.POP.7579.MA", female: "SP.POP.7579.FE" },
+	{ start: 80, label: "80+", male: "SP.POP.80UP.MA", female: "SP.POP.80UP.FE", openEnded: true }
+];
 
 var groupLength = 10;
+var countryCodeCache = {};
+var countryListPromise = null;
+var countryOptions = [];
 
-var aYears = [1980, 2010];
-var aCountries = ["Brazil", "China"];
-
+var proccessYear = function(json) {
+	var data = [];
+	json.forEach(function(year){
+			var group = Math.floor(year.age / groupLength);
+			if(!data[group]) {
+				data[group] = {
+					total: 0,
+					males: 0,
+					females: 0,
+					label: ""+(group * groupLength)+"-"+(((group+1) * groupLength)-1)
+				};
+			}
+			data[group].total += year.total;
+			data[group].males += year.males;
+			data[group].females += year.females;
+			if (year.openEnded) {
+				data[group].label = year.label || data[group].label;
+			}
+		});
+	return data.filter(Boolean);
+};
 
 function visualizeit(sSelector, data) {
+		var width = 450,
+				barHeight = 20,
+				leftMargin = 50;
     
-    var width = 450,
-        barHeight = 20,
-        leftMargin = 50;
-    
-    var male_x = d3.scale.linear()
-        .range([leftMargin + ((width-leftMargin) / 2) , width]);
+		var male_x = d3.scale.linear()
+				.range([leftMargin + ((width-leftMargin) / 2) , width]);
         
-    var female_x = d3.scale.linear()
-        .range([leftMargin + ((width-leftMargin) / 2) , leftMargin]);
+		var female_x = d3.scale.linear()
+				.range([leftMargin + ((width-leftMargin) / 2) , leftMargin]);
     
-    var width_x = d3.scale.linear()
-        .range([0, ((width-leftMargin) / 2)]);
+		var width_x = d3.scale.linear()
+				.range([0, ((width-leftMargin) / 2)]);
     
+		var chart = d3.select(sSelector)
+				.attr("width", width);
         
-    var chart = d3.select(sSelector)
-        .attr("width", width);
-        
-      male_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
-      female_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
-      width_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
+		male_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
+		female_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
+		width_x.domain([0, d3.max(data, function(d) { return Math.max(d.males, d.females); })]);
     
-      
-      chart.attr("height", barHeight * data.length);
-    
-      var bar = chart.selectAll("g")
-          .data(data)
-        .enter().append("g")
-          .attr("transform", function(d, i) { return "translate(0," + (data.length - 1 - i ) * barHeight + ")"; });
+		chart.attr("height", barHeight * data.length);
   
-      bar.append("rect")
-          .attr("x",  male_x(0))
-          .attr("width", function(d) { return width_x(d.males); })
-          .attr("title", function(d) { return "Males aged "+d.label+" = "+ d.males; })
-          .attr("height", barHeight - 1)
-          .attr("class", "males");
-    
-
-      bar.append("rect")
-          .attr("x", function(d) { return female_x( d.females); })
-          .attr("width", function(d) { return width_x( d.females); })
-          .attr("title", function(d) { return "Females aged "+d.label+" = "+ d.females; })
-          .attr("height", barHeight - 1 )
-          .attr("class", "females");
-          
-      
-      bar.append("text")
-          .attr("x", function(d) { 
-                if (width_x(d.males) > 30 ) {
-                    return male_x(d.males) - 3 ;
-                } else {
-                    return male_x(0) + 50;
-                }
-          })
-          .attr("y", barHeight / 2)
-          .attr("dy", ".35em")
-          .attr("class", "males")
-          .text(function(d) { return Math.round(d.males/100000)/10; });
-          
-      bar.append("text")
-          .attr("x", function(d) { 
-                if (width_x(d.females) > 30 ) {
-                    return female_x(d.females) + 3 ;
-                } else {
-                    return female_x(0) - 50;
-                }
-            })
-          .attr("y", barHeight / 2)
-          .attr("dy", ".35em")
-          .attr("class", "females")
-          
-          .text(function(d) { return Math.round(d.females/100000)/10; })
-          
-      
-      bar.append("text")
-          .attr("x", leftMargin)
-          .attr("y", barHeight / 2)
-          .attr("dy", ".35em")
-          .attr("class", "labels")
-          .text(function(d) { return d.label  });
-
+		var bar = chart.selectAll("g")
+				.data(data)
+			.enter().append("g")
+				.attr("transform", function(d, i) { return "translate(0," + (data.length - 1 - i ) * barHeight + ")"; });
   
+		bar.append("rect")
+				.attr("x",  male_x(0))
+				.attr("width", function(d) { return width_x(d.males); })
+				.attr("title", function(d) { return "Males aged "+d.label+" = "+ d.males; })
+				.attr("height", barHeight - 1)
+				.attr("class", "males");
+  
+		bar.append("rect")
+				.attr("x", function(d) { return female_x( d.females); })
+				.attr("width", function(d) { return width_x( d.females); })
+				.attr("title", function(d) { return "Females aged "+d.label+" = "+ d.females; })
+				.attr("height", barHeight - 1 )
+				.attr("class", "females");
+        
+		bar.append("text")
+				.attr("x", function(d) { 
+							if (width_x(d.males) > 30 ) {
+									return male_x(d.males) - 3 ;
+							} else {
+									return male_x(0) + 50;
+							}
+				})
+				.attr("y", barHeight / 2)
+				.attr("dy", ".35em")
+				.attr("class", "males")
+				.text(function(d) { return Math.round(d.males/100000)/10; });
+        
+		bar.append("text")
+				.attr("x", function(d) { 
+							if (width_x(d.females) > 30 ) {
+									return female_x(d.females) + 3 ;
+							} else {
+									return female_x(0) - 50;
+							}
+					})
+				.attr("y", barHeight / 2)
+				.attr("dy", ".35em")
+				.attr("class", "females")
+				.text(function(d) { return Math.round(d.females/100000)/10; });
+        
+		bar.append("text")
+				.attr("x", leftMargin)
+				.attr("y", barHeight / 2)
+				.attr("dy", ".35em")
+				.attr("class", "labels")
+				.text(function(d) { return d.label  });
+}
+
+function populateCountrySelects() {
+	var select1 = document.getElementById("country1");
+	var select2 = document.getElementById("country2");
+	if (!select1 || !select2) return;
+	
+	[select1, select2].forEach(function(select) {
+		select.innerHTML = "";
+		countryOptions.forEach(function(c) {
+			var opt = document.createElement("option");
+			opt.value = c.code; // ISO-2 required by API
+			opt.textContent = c.name;
+			select.appendChild(opt);
+		});
+	});
+	
+	// Set default values
+	select1.value = "BR";
+	select2.value = "CN";
+}
+
+function loadCountryCodes() {
+	if (countryListPromise) {
+		return countryListPromise;
+	}
+	countryListPromise = fetch("https://api.worldbank.org/v2/country?format=json&per_page=400")
+		.then(function(resp) { return resp.json(); })
+		.then(function(json) {
+			if (Array.isArray(json) && Array.isArray(json[1])) {
+				json[1].forEach(function(c) {
+					if (c && c.name && (c.iso2Code || c.id)) {
+						var code = (c.iso2Code || c.id).toUpperCase();
+						var nameKey = c.name.toLowerCase();
+						var codeKey = code.toLowerCase();
+						countryCodeCache[nameKey] = code; // name -> iso2
+						countryCodeCache[codeKey] = code; // iso2 -> iso2
+						countryOptions.push({ code: code, name: c.name });
+					}
+				});
+				countryOptions.sort(function(a, b) { return a.name.localeCompare(b.name); });
+				populateCountrySelects();
+			}
+			return countryCodeCache;
+		});
+	return countryListPromise;
+}
+
+function getCountryCode(countryName) {
+	var key = countryName.trim().toLowerCase();
+	if (countryCodeCache[key]) {
+		return Promise.resolve(countryCodeCache[key]);
+	}
+	return loadCountryCodes().then(function() {
+		return countryCodeCache[key] || null;
+	});
+}
+
+function closestValueFromSeries(series, targetYear) {
+	var best = null;
+	series.forEach(function(item) {
+		if (!item || item.value === null) return;
+		var yearNum = parseInt(item.date, 10);
+		var dist = Math.abs(yearNum - targetYear);
+		if (best === null || dist < best.dist) {
+			best = { dist: dist, value: +item.value };
+		}
+	});
+	return best ? best.value : 0;
+}
+
+function fetchIndicatorValue(countryCode, indicator, year) {
+	var primaryUrl = "https://api.worldbank.org/v2/country/"+countryCode+"/indicator/"+indicator+"?date="+year+":"+year+"&format=json&per_page=5";
+	var fallbackUrl = "https://api.worldbank.org/v2/country/"+countryCode+"/indicator/"+indicator+"?date="+(year-5)+":"+(year+5)+"&format=json&per_page=50";
+
+	function parseResponse(json) {
+		if (Array.isArray(json) && json[0] && json[0].message) {
+			var msg = Array.isArray(json[0].message) && json[0].message[0] ? json[0].message[0].value : "World Bank API error";
+			throw new Error(msg);
+		}
+		if (Array.isArray(json) && Array.isArray(json[1])) {
+			var exact = json[1].find(function(item) { return item && item.date === String(year) && item.value !== null; });
+			if (exact && exact.value !== null) {
+				return +exact.value;
+			}
+			return closestValueFromSeries(json[1], year);
+		}
+		return 0;
+	}
+
+	return fetch(primaryUrl)
+		.then(function(resp) { return resp.json(); })
+		.then(function(json) {
+			var val = parseResponse(json);
+			if (val !== 0) return val;
+			// fallback wider window
+			return fetch(fallbackUrl)
+				.then(function(resp) { return resp.json(); })
+				.then(parseResponse);
+		});
+}
+
+function fetchWorldBankAgeBands(countryName, year) {
+	return getCountryCode(countryName).then(function(code) {
+		if (!code) {
+			throw new Error("Country not found in World Bank API: " + countryName);
+		}
+		return Promise.all(indicatorBands.map(function(band) {
+			return Promise.all([
+				fetchIndicatorValue(code, band.male, year),
+				fetchIndicatorValue(code, band.female, year)
+			]).then(function(values) {
+				return {
+					age: band.start,
+					label: band.label,
+					males: values[0],
+					females: values[1],
+					total: values[0] + values[1],
+					openEnded: band.openEnded || false
+				};
+			});
+		}));
+	});
 }
 
 function draw() {
-    groupLength = document.getElementById("groupLen").value;
-    //console.log("groupLength =", groupLength);
-    
-    var aYears = [document.getElementById("year1").value, document.getElementById("year2").value];
-    //console.log("aYears =", aYears);
-    var aCountries = [document.getElementById("country1").value, document.getElementById("country2").value];
-    //console.log("aCountries =", aCountries);
-    
+		groupLength = Math.max(5, parseInt(document.getElementById("groupLen").value, 10) || 10); // WB data is 5-year bands
+		var aYears = [document.getElementById("year1").value, document.getElementById("year2").value];
+		var aCountries = [document.getElementById("country1").value, document.getElementById("country2").value];
 
-    for(var i = 0; i < aCountries.length; i++) {
-        for(var j = 0; j < aYears.length; j++) {
-    
-            var sURL = "http://api.population.io:80/1.0/population/"+aYears[j]+"/"+aCountries[i]+"/";
-            var sLabel = aCountries[i]+" "+ aYears[j];
-            var sLabelID = "label-"+i+"-"+j;
-            var ele = document.getElementById(sLabelID);
-            ele.innerHTML = sLabel;
-            document.getElementById("chart-"+i+"-"+j).innerHTML = "";
-                
-            d3.json(sURL, function(iY, iC, error, json) {
-                if (error) {
-                    return //console.warn(error);
-                }
-                
-                var data = proccessYear(json);
-                var sChartID = "chart-"+iC+"-"+iY;
-                visualizeit("#"+sChartID, data);
-            }.bind(this, j, i));
-        }
-    }
+		aCountries.forEach(function(country, i) {
+				aYears.forEach(function(year, j) {
+						var sLabel = country+" "+ year;
+						var sLabelID = "label-"+i+"-"+j;
+						var ele = document.getElementById(sLabelID);
+						ele.innerHTML = sLabel;
+						var chartId = "chart-"+i+"-"+j;
+						document.getElementById(chartId).innerHTML = "";
+
+						fetchWorldBankAgeBands(country, year)
+							.then(function(rawData) {
+								var grouped = proccessYear(rawData);
+								visualizeit("#"+chartId, grouped);
+							})
+							.catch(function(err) {
+								console.error(err);
+								d3.select("#"+chartId).append("text")
+									.text("No data")
+									.attr("x", 10)
+									.attr("y", 20);
+							});
+				});
+		});
 }
 
-draw();
-
-function type(d) {
-  d.total = +d.total; // coerce to number
-  return d;
-}
+loadCountryCodes().then(draw);
 
 </script>
 
