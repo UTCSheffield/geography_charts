@@ -343,6 +343,11 @@ function fetchWorldBankAgeBands(countryName, year) {
 	});
 }
 
+function getCountryName(countryCode) {
+	var option = countryOptions.find(function(c) { return c.code === countryCode; });
+	return option ? option.name : countryCode;
+}
+
 function draw() {
 		groupLength = Math.max(5, parseInt(document.getElementById("groupLen").value, 10) || 10); // WB data is 5-year bands
 		var aYears = [document.getElementById("year1").value, document.getElementById("year2").value];
@@ -350,7 +355,8 @@ function draw() {
 
 		aCountries.forEach(function(country, i) {
 				aYears.forEach(function(year, j) {
-						var sLabel = country+" "+ year;
+						var countryName = getCountryName(country);
+						var sLabel = countryName+" "+ year;
 						var sLabelID = "label-"+i+"-"+j;
 						var ele = document.getElementById(sLabelID);
 						ele.innerHTML = sLabel;
